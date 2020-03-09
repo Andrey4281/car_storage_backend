@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="9" author="asemenov">
+        <createTable tableName="adverts">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created" type="datetime" defaultValueDate="now()"/>
+            <column name="description" type="varchar(2000)"/>
+            <column name="status" type="boolean" defaultValueBoolean="false"/>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="10" author="asemenov">
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="adverts"
+                                 constraintName="adverts_users_id_fk"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+
+        <addForeignKeyConstraint baseColumnNames="car_id"
+                                 baseTableName="adverts"
+                                 constraintName="adverts_cars_id_fk"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cars"/>
+
+    </changeSet>
+
+
+</databaseChangeLog>

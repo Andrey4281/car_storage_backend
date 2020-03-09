@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="11" author="asemenov">
+        <createTable tableName="attached_file">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="real_name" type="varchar(255)"/>
+            <column name="file_size" type="varchar(255)"/>
+            <column name="file_extension" type="varchar(255)"/>
+            <column name="path_to_file" type="varchar(255)"/>
+            <column name="advert_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="12" author="asemenov">
+
+        <addForeignKeyConstraint baseColumnNames="advert_id"
+                                 baseTableName="attached_file"
+                                 constraintName="attached_file_advert_id_fk"
+                                 referencedColumnNames="id"
+                                 referencedTableName="adverts"/>
+
+    </changeSet>
+
+
+</databaseChangeLog>
