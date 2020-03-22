@@ -15,7 +15,7 @@ public class Advert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable = false)
-    private int id;
+    private Long id;
 
     @Column(name="created")
     private Instant created;
@@ -39,15 +39,19 @@ public class Advert {
     @OneToMany(mappedBy = "advert", fetch = FetchType.EAGER)
     private List<AttachedFile> attachedFiles = new LinkedList<>();
 
+    public Advert(Long id) {
+        this.id = id;
+    }
+
     public Advert() {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
