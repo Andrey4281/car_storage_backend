@@ -28,7 +28,6 @@ public class Advert {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id", foreignKey = @ForeignKey(name="adverts_users_id_fk"), nullable = false)
-    @Fetch(FetchMode.JOIN)
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -86,14 +85,14 @@ public class Advert {
     public void setUser(User user) {
         this.user = user;
     }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
+//
+//    public Car getCar() {
+//        return car;
+//    }
+//
+//    public void setCar(Car car) {
+//        this.car = car;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -103,13 +102,13 @@ public class Advert {
         return id == advert.id &&
                 status == advert.status &&
                 Objects.equals(created, advert.created) &&
-                Objects.equals(description, advert.description) &&
-                Objects.equals(user, advert.user) &&
-                Objects.equals(car, advert.car);
+                Objects.equals(description, advert.description);// &&
+//                Objects.equals(user, advert.user) &&
+//                Objects.equals(car, advert.car);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, created, description, status, user, car);
+        return Objects.hash(id, created, description, status);
     }
 }

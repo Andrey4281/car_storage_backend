@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.cars_storage.domain.Advert;
 import ru.job4j.cars_storage.service.AdvertService;
@@ -71,6 +70,17 @@ public class AdvertController {
         if (!advert.isPresent()) {
             return new ResponseEntity<>("Advert not found", HttpStatus.NOT_FOUND);
         } else {
+            return new ResponseEntity<>(advert, HttpStatus.OK);
+        }
+    }
+
+    @DeleteMapping("/adverts/{id}")
+    public ResponseEntity<?> deleteAdvert(@PathVariable Long id) {
+        Optional<Advert> advert = advertService.findOne(id);
+        if (!advert.isPresent()) {
+            return new ResponseEntity<>("Advert not found", HttpStatus.NOT_FOUND);
+        } else {
+            advertService.delete(id);
             return new ResponseEntity<>(advert, HttpStatus.OK);
         }
     }

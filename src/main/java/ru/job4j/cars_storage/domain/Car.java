@@ -2,6 +2,7 @@ package ru.job4j.cars_storage.domain;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="cars")
