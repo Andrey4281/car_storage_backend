@@ -1,5 +1,6 @@
 package ru.job4j.cars_storage.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,9 +23,11 @@ public class User implements UserDetails {
     @Column(name = "phone", nullable = false, unique = true)
     private String phone;
 
+    @JsonIgnore
     @Column(name = "password", nullable = false, unique = true)
     private String password;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name="users_roles",
@@ -61,6 +64,7 @@ public class User implements UserDetails {
         this.phone = phone;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
@@ -70,29 +74,34 @@ public class User implements UserDetails {
         return password;
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
-        throw new UnsupportedOperationException();
+        return login;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
-        throw new UnsupportedOperationException();
+        return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
-        throw new UnsupportedOperationException();
+        return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
-        throw new UnsupportedOperationException();
+        return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
-        throw new UnsupportedOperationException();
+        return true;
     }
 
     public void setPassword(String password) {

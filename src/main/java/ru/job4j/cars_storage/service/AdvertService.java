@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface AdvertService {
     void delete(Long id);
     Optional<Advert> findOne(Long id);
-    Page<Advert> findAll(Pageable pageable);
+    List<Advert> findAll();
     Advert save(Advert advert, List<MultipartFile> files, List<Long> deleteFiles);
 }

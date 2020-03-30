@@ -2,10 +2,14 @@ package ru.job4j.cars_storage.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.job4j.cars_storage.domain.Advert;
 import ru.job4j.cars_storage.service.AdvertService;
 
@@ -61,6 +65,12 @@ public class AdvertController {
         advertService.save(advert, files, deleteFileList);
 
         return new ResponseEntity<>(advert, HttpStatus.OK);
+    }
+
+    @GetMapping("/adverts")
+    public ResponseEntity<List<Advert>> getAllTickets() {
+        log.debug("REST request to get all adverts");
+        return ResponseEntity.ok().body(advertService.findAll());
     }
 
     @GetMapping("/adverts/{id}")

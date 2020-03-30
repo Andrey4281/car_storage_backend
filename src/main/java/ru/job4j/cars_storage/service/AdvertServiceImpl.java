@@ -38,12 +38,11 @@ public class AdvertServiceImpl implements AdvertService {
 
     /**
      * Метод пока в разработке, сделать пагинацию и критерию
-     * @param pageable
      * @return
      */
     @Override
-    public Page<Advert> findAll(Pageable pageable) {
-        return advertRepository.findAll(pageable);
+    public List<Advert> findAll() {
+        return advertRepository.findAll();
     }
 
     @Override
