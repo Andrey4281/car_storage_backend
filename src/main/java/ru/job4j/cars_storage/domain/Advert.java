@@ -1,11 +1,10 @@
 package ru.job4j.cars_storage.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -19,7 +18,7 @@ public class Advert {
     private Long id;
 
     @Column(name="created")
-    private Instant created;
+    private Timestamp created;
 
     @Column(name="description")
     private String description;
@@ -39,6 +38,14 @@ public class Advert {
     @OneToMany(mappedBy = "advert", fetch = FetchType.EAGER)
     private List<AttachedFile> attachedFiles = new LinkedList<>();
 
+    public List<AttachedFile> getAttachedFiles() {
+        return attachedFiles;
+    }
+
+    public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+        this.attachedFiles = attachedFiles;
+    }
+
     public Advert(Long id) {
         this.id = id;
     }
@@ -55,11 +62,11 @@ public class Advert {
         this.id = id;
     }
 
-    public Instant getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Instant created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
@@ -86,14 +93,14 @@ public class Advert {
     public void setUser(User user) {
         this.user = user;
     }
-//
-//    public Car getCar() {
-//        return car;
-//    }
-//
-//    public void setCar(Car car) {
-//        this.car = car;
-//    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
 
     @Override
     public boolean equals(Object o) {
