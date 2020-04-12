@@ -1,5 +1,6 @@
 package ru.job4j.cars_storage.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -28,6 +29,7 @@ public class AttachedFile {
     @Column(name = "path_to_file")
     private String pathToFile;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     @NotNull
     @JoinColumn(name = "advert_id", foreignKey = @ForeignKey(name="attached_file_advert_id_fk"), nullable = false)
