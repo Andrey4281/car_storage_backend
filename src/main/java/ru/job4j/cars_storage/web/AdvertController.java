@@ -35,7 +35,7 @@ public class AdvertController {
      * @param files
      * @return
      */
-    @PostMapping(value = "/adverts",  consumes = { "multipart/form-data" })
+    @PostMapping(value = "/adverts/new",  consumes = { "multipart/form-data" })
     public ResponseEntity<Advert> createAdvert(@RequestPart("advert") Advert advert,
                                                @RequestPart(value = "files", required = false) List<MultipartFile> files) {
 
@@ -53,7 +53,7 @@ public class AdvertController {
      * @return
      * @throws BadRequestException
      */
-    @PutMapping(value = "/adverts",  consumes = { "multipart/form-data" })
+    @PutMapping(value = "/adverts/edit",  consumes = { "multipart/form-data" })
     public ResponseEntity<Advert> updateAdvert(@RequestPart("advert") Advert advert,
                                                @RequestPart(value = "files", required = false) List<MultipartFile> files,
                                                @RequestParam(value ="deleteFileList", required = false) List<Long> deleteFileList) throws BadRequestException {
@@ -84,7 +84,7 @@ public class AdvertController {
         }
     }
 
-    @DeleteMapping("/adverts/{id}")
+    @DeleteMapping("/adverts/delete/{id}")
     public ResponseEntity<?> deleteAdvert(@PathVariable Long id) {
         Optional<Advert> advert = advertService.findOne(id);
         if (!advert.isPresent()) {
