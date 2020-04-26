@@ -1,6 +1,8 @@
 package ru.job4j.cars_storage.web;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import ru.job4j.cars_storage.service.model.NewUserResponse;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    private final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -32,6 +35,8 @@ public class UserController {
 
     @PostMapping("/signin")
     public ResponseEntity<AuthTokenResponse> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
+        log.debug("SIGN IN REQUEST:");
+        log.debug(loginUser.toString());
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginUser.getLogin(),
@@ -42,7 +47,7 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final UserDetails user = userService.loadUserByUsername(loginUser.getLogin());
         final String token = jwtTokenUtil.doGenerateToken(user);
-        return ResponseEntity.ok(new AuthTokenResponse(token));
+        return ResponseEntity.ok(new AuthTokenResponse(token, user.getUsername()));
     }
 
     @PostMapping("/signup")

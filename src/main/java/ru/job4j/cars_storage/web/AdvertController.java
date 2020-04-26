@@ -15,6 +15,7 @@ import ru.job4j.cars_storage.service.AdvertService;
 
 import javax.servlet.annotation.MultipartConfig;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -68,9 +69,9 @@ public class AdvertController {
     }
 
     @GetMapping("/adverts")
-    public ResponseEntity<List<Advert>> getAllTickets() {
+    public ResponseEntity<List<Advert>> getAllAdverts(@RequestParam Map<String, String> reqParam) {
         log.debug("REST request to get all adverts");
-        return ResponseEntity.ok().body(advertService.findAll());
+        return ResponseEntity.ok().body(advertService.findAll(reqParam));
     }
 
     @GetMapping("/adverts/{id}")

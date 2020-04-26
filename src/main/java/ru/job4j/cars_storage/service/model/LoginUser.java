@@ -45,4 +45,13 @@ public class LoginUser {
     public int hashCode() {
         return Objects.hash(login, password, phone);
     }
+
+    @Override
+    public String toString() {
+        return "LoginUser{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }
