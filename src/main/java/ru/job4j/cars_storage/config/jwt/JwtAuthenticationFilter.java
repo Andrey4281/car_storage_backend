@@ -41,7 +41,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (header != null && header.startsWith(Constants.TOKEN_PREFIX)) {
             authToken = header.replace(Constants.TOKEN_PREFIX, "");
             try {
+                log.info("Auth token is {}", authToken);
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
+                log.debug("UserName from tokken {}", username);
             } catch (IllegalArgumentException e) {
                 log.error("an error occured during getting username from token", e);
             } catch (ExpiredJwtException e) {
@@ -55,6 +57,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.loadUserByUsername(username);
+            log.debug("Current userDetails {}", userDetails);
 
             if (!jwtTokenUtil.isTokenExpired(authToken)) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

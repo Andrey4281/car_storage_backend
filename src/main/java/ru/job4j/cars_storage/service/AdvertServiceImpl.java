@@ -1,10 +1,14 @@
 package ru.job4j.cars_storage.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.cars_storage.domain.Advert;
 import ru.job4j.cars_storage.domain.AttachedFile;
+import ru.job4j.cars_storage.domain.User;
 import ru.job4j.cars_storage.repository.AdvertRepository;
 import ru.job4j.cars_storage.repository.FileRepository;
 import ru.job4j.cars_storage.repository.UserRepository;
@@ -14,6 +18,7 @@ import java.util.*;
 
 @Service
 public class AdvertServiceImpl implements AdvertService {
+    private final Logger log = LoggerFactory.getLogger(AdvertServiceImpl.class);
     private final AdvertRepository advertRepository;
     private final FileRepository fileRepository;
     private final UserRepository userRepository;
@@ -51,6 +56,12 @@ public class AdvertServiceImpl implements AdvertService {
 
     @Override
     public Advert save(Advert advert, List<MultipartFile> files, List<Long> deleteFiles) {
+        if (advert.getId() == null) {
+            advert.setCreated(new Timestamp(new Date().getTime()));
+            advert.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+            log.debug("current user login {}", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+            log.debug("current advert: {}", advert.toString());
+        }
         Advert advertSaved = advertRepository.save(advert);
         this.fileService.processFile(files, deleteFiles, advertSaved.getId());
         return advertSaved;

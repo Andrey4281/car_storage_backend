@@ -1,11 +1,14 @@
 package ru.job4j.cars_storage.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.job4j.cars_storage.domain.Role;
 import ru.job4j.cars_storage.service.model.LoginUser;
 import ru.job4j.cars_storage.domain.User;
 import ru.job4j.cars_storage.repository.RoleRepository;
@@ -17,6 +20,7 @@ import java.util.HashSet;
 
 @Service
 public class UserServiceImpl implements UserDetailsService, UserService {
+    private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
@@ -32,7 +36,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        UserDetails user = userRepository.findUserByLogin(s);
+        User user = userRepository.findUserByLoginWithRoles(s);
 
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
@@ -44,7 +48,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public NewUserResponse save(LoginUser loginUser) {
         NewUserResponse response = new NewUserResponse();
-        if (userRepository.findUserByLogin(loginUser.getLogin()) != null) {
+        if (userRepository.findUserByLoginWithRoles(loginUser.getLogin()) != null) {
             response.setSuccess(false);
             response.setErrorMessage(String.format("User with login %s already exists", loginUser.getLogin()));
         } else {

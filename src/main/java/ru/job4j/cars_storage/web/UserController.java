@@ -44,7 +44,9 @@ public class UserController {
                 )
         );
 
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        log.debug("CURRENT auth user {}", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         final UserDetails user = userService.loadUserByUsername(loginUser.getLogin());
         final String token = jwtTokenUtil.doGenerateToken(user);
         return ResponseEntity.ok(new AuthTokenResponse(token, user.getUsername()));

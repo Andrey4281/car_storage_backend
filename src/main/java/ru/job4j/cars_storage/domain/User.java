@@ -28,7 +28,7 @@ public class User implements UserDetails {
     private String password;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="users_roles",
             joinColumns = @JoinColumn(name="user_id"),
@@ -131,5 +131,15 @@ public class User implements UserDetails {
     @Override
     public int hashCode() {
         return Objects.hash(id, login, phone, password);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

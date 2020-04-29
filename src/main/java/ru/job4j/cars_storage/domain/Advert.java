@@ -28,9 +28,10 @@ public class Advert {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id", foreignKey = @ForeignKey(name="adverts_users_id_fk"), nullable = false)
+    @Fetch(FetchMode.JOIN)
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name="car_id", foreignKey = @ForeignKey(name="adverts_cars_id_fk"), nullable = false)
     @Fetch(FetchMode.JOIN)
     private Car car;
@@ -110,13 +111,23 @@ public class Advert {
         return id == advert.id &&
                 status == advert.status &&
                 Objects.equals(created, advert.created) &&
-                Objects.equals(description, advert.description);// &&
-//                Objects.equals(user, advert.user) &&
-//                Objects.equals(car, advert.car);
+                Objects.equals(description, advert.description);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, created, description, status);
+    }
+
+    @Override
+    public String toString() {
+        return "Advert{" +
+                "id=" + id +
+                ", created=" + created +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", user=" + user +
+                ", car=" + car +
+                '}';
     }
 }
