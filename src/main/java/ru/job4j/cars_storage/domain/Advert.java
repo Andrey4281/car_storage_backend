@@ -37,6 +37,7 @@ public class Advert {
     private Car car;
 
     @OneToMany(mappedBy = "advert", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     private List<AttachedFile> attachedFiles = new LinkedList<>();
 
     public List<AttachedFile> getAttachedFiles() {

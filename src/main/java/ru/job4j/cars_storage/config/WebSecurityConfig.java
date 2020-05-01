@@ -53,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.cors();
         http
                 .csrf()
                 .disable()
@@ -60,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/adverts/{id}").permitAll()
                     .antMatchers("/api/adverts").permitAll()
                     .antMatchers("/user/signin", "/user/signup").permitAll()
+                    .antMatchers("/api/attached-files/download/{id}").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
@@ -69,19 +71,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("OPTIONS");
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("DELETE");
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-    }
 }

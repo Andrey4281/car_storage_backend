@@ -10,7 +10,7 @@ import ru.job4j.cars_storage.domain.Advert;
 import ru.job4j.cars_storage.domain.AttachedFile;
 import ru.job4j.cars_storage.domain.User;
 import ru.job4j.cars_storage.repository.AdvertRepository;
-import ru.job4j.cars_storage.repository.FileRepository;
+import ru.job4j.cars_storage.repository.AttachedFileRepository;
 import ru.job4j.cars_storage.repository.UserRepository;
 
 import java.sql.Timestamp;
@@ -20,24 +20,24 @@ import java.util.*;
 public class AdvertServiceImpl implements AdvertService {
     private final Logger log = LoggerFactory.getLogger(AdvertServiceImpl.class);
     private final AdvertRepository advertRepository;
-    private final FileRepository fileRepository;
+    private final AttachedFileRepository attachedFileRepository;
     private final UserRepository userRepository;
-    private final FileService fileService;
+    private final AttachedFileService attachedFileService;
     private final FilterService filterService;
 
-    public AdvertServiceImpl(AdvertRepository advertRepository, FileRepository fileRepository, UserRepository userRepository, FileService fileService, FilterService filterService) {
+    public AdvertServiceImpl(AdvertRepository advertRepository, AttachedFileRepository attachedFileRepository, UserRepository userRepository, AttachedFileService attachedFileService, FilterService filterService) {
         this.advertRepository = advertRepository;
-        this.fileRepository = fileRepository;
+        this.attachedFileRepository = attachedFileRepository;
         this.userRepository = userRepository;
-        this.fileService = fileService;
+        this.attachedFileService = attachedFileService;
         this.filterService = filterService;
     }
 
     @Override
     public void delete(Long id) {
         advertRepository.deleteById(id);
-        List<AttachedFile> attachedFiles = fileRepository.findAllByAdvert_Id(id);
-        fileService.deleteFiles(attachedFiles);
+        List<AttachedFile> attachedFiles = attachedFileRepository.findAllByAdvert_Id(id);
+        attachedFileService.deleteFiles(attachedFiles);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class AdvertServiceImpl implements AdvertService {
             log.debug("current advert: {}", advert.toString());
         }
         Advert advertSaved = advertRepository.save(advert);
-        this.fileService.processFile(files, deleteFiles, advertSaved.getId());
+        this.attachedFileService.processFile(files, deleteFiles, advertSaved.getId());
         return advertSaved;
     }
 

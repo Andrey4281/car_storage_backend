@@ -2,14 +2,10 @@ package ru.job4j.cars_storage.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.job4j.cars_storage.domain.Advert;
 import ru.job4j.cars_storage.service.AdvertService;
 
@@ -21,6 +17,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @MultipartConfig
+@CrossOrigin("http://localhost:4200")
 public class AdvertController {
     private final Logger log = LoggerFactory.getLogger(AdvertController.class);
 
