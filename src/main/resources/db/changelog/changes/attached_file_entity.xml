@@ -15,9 +15,7 @@
             <column name="file_size" type="varchar(255)"/>
             <column name="file_extension" type="varchar(255)"/>
             <column name="path_to_file" type="varchar(255)"/>
-            <column name="advert_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
+            <column name="advert_id" type="bigint"/>
         </createTable>
     </changeSet>
 

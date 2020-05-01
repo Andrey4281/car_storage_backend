@@ -36,7 +36,7 @@ public class Advert {
     @Fetch(FetchMode.JOIN)
     private Car car;
 
-    @OneToMany(mappedBy = "advert", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "advert", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE})
     @Fetch(FetchMode.JOIN)
     private List<AttachedFile> attachedFiles = new LinkedList<>();
 
