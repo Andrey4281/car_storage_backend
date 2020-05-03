@@ -2,6 +2,8 @@ package ru.job4j.cars_storage.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -68,7 +70,10 @@ public class AdvertController {
     @GetMapping("/adverts")
     public ResponseEntity<List<Advert>> getAllAdverts(@RequestParam Map<String, String> reqParam) {
         log.debug("REST request to get all adverts");
-        return ResponseEntity.ok().body(advertService.findAll(reqParam));
+        Page<Advert> page = advertService.findAll(reqParam);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("totalSize", String.valueOf(page.getTotalElements()));
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     @GetMapping("/adverts/{id}")

@@ -2,6 +2,9 @@ package ru.job4j.cars_storage.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -50,8 +53,10 @@ public class AdvertServiceImpl implements AdvertService {
      * @return
      */
     @Override
-    public List<Advert> findAll(Map<String, String> reqParam) {
-        return advertRepository.findAll(this.buildCriteria(reqParam));
+    public Page<Advert> findAll(Map<String, String> reqParam) {
+        PageRequest pageRequest = PageRequest.of(Integer.parseInt(reqParam.get("page")),
+                    Integer.parseInt(reqParam.get("size")), Sort.by("id").ascending());
+        return  advertRepository.findAll(this.buildCriteria(reqParam), pageRequest);
     }
 
     @Override
