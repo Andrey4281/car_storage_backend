@@ -56,11 +56,11 @@ public class AdvertServiceImpl implements AdvertService {
 
     @Override
     public Advert save(Advert advert, List<MultipartFile> files, List<Long> deleteFiles) {
+        log.debug("current advert: {}", advert.toString());
         if (advert.getId() == null) {
             advert.setCreated(new Timestamp(new Date().getTime()));
             advert.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
             log.debug("current user login {}", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-            log.debug("current advert: {}", advert.toString());
         }
         Advert advertSaved = advertRepository.save(advert);
         this.attachedFileService.processFile(files, deleteFiles, advertSaved.getId());

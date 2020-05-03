@@ -31,7 +31,7 @@ public class Advert {
     @Fetch(FetchMode.JOIN)
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @JoinColumn(name="car_id", foreignKey = @ForeignKey(name="adverts_cars_id_fk"), nullable = false)
     @Fetch(FetchMode.JOIN)
     private Car car;
