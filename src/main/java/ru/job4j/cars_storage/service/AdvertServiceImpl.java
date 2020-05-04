@@ -77,8 +77,19 @@ public class AdvertServiceImpl implements AdvertService {
         if (reqParam.get("userLogin") != null) {
             criteria = filterService.getUserFilter(reqParam.get("userLogin"));
         }
-        if (reqParam.get("categoryCar") != null) {
-            criteria = criteria.and(filterService.getCategoryFilter(reqParam.get("categoryCar")));
+        if (reqParam.get("advertStatus") != null) {
+            if (criteria == null) {
+                criteria = filterService.getStatusFilter(Boolean.parseBoolean(reqParam.get("advertStatus")));
+            } else {
+                criteria = criteria.and(filterService.getStatusFilter(Boolean.parseBoolean(reqParam.get("advertStatus"))));
+            }
+        }
+        if (reqParam.get("carCategory") != null) {
+            if (criteria == null) {
+                criteria = filterService.getCategoryFilter(reqParam.get("carCategory"));
+            } else {
+                criteria = criteria.and(filterService.getCategoryFilter(reqParam.get("carCategory")));
+            }
         }
         if (reqParam.get("countDay") != null) {
             Calendar calendar = new GregorianCalendar();
@@ -86,8 +97,13 @@ public class AdvertServiceImpl implements AdvertService {
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
-            calendar.set(Calendar.DAY_OF_YEAR, -Integer.parseInt(reqParam.get("countDay")));
-            criteria = criteria.and(filterService.getDateFilter(new Timestamp(calendar.getTime().getTime())));
+            calendar.add(Calendar.DAY_OF_YEAR, -Integer.parseInt(reqParam.get("countDay")));
+            log.debug("Calendar ={}", calendar.toString());
+            if (criteria == null) {
+                criteria = filterService.getDateFilter(new Timestamp(calendar.getTime().getTime()));
+            } else {
+                criteria = criteria.and(filterService.getDateFilter(new Timestamp(calendar.getTime().getTime())));
+            }
         }
         return criteria;
     }

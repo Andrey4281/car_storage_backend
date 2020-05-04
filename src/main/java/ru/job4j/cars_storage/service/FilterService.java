@@ -26,4 +26,10 @@ public class FilterService {
             return cb.greaterThan(advert.get("created"), date);
         };
     }
+
+    public Specification<Advert> getStatusFilter(boolean status) {
+        return (advert, cq, cb) -> {
+            return cb.equal(advert.get("status"), status);
+        };
+    }
 }
