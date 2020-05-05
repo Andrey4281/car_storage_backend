@@ -12,9 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 import ru.job4j.cars_storage.config.jwt.JwtAuthenticationEntryPoint;
 import ru.job4j.cars_storage.config.jwt.JwtAuthenticationFilter;
 import ru.job4j.cars_storage.service.UserServiceImpl;
@@ -58,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
+                    .antMatchers("/car_storage/**").permitAll()
                     .antMatchers("/api/adverts/{id}").permitAll()
                     .antMatchers("/api/adverts").permitAll()
                     .antMatchers("/user/signin", "/user/signup").permitAll()
