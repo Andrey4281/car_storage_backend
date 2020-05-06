@@ -5,5 +5,5 @@ In this project were the next technologies used: Spring Boot 2.0, Angular 8, Spr
 The app has the 6 screens:<br>
 <ul>
 <li>Home page:<br><img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/home.png"></li>
-<li>Dialog window with info about each car in system:<br><img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/sign_in.png"></li>
+<li>Sign in page:<br><img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/sign_in.png"></li>
 </ul>
