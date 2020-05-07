@@ -7,3 +7,4 @@ The app has the 6 screens:<br>
 <li>Home page:<br><img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/home.png"></li>
 <li>Sign in page:<br><img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/sign_in.png"></li>
 </ul>
+I had not finished description else for this project. I will do it in the nearest time.
