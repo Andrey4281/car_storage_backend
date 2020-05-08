@@ -14,5 +14,9 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
 <li>All adverts are editing or creating in separed dialog window<br><img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/edit_create_dialog.png"></li>
 </ul>
 <hr>
-<h3>Assembly:<h3/>
+<h3>Assembly:</h3><br>
+  <ol>
+    <li>You should copy this project to you local machine by command git clone</li>
+    <li></li>
+  </ol>
 I had not finished description else for this project. I will do it in the nearest time.
