@@ -17,6 +17,6 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
 <h3>Assembly:</h3><br>
   <ol>
     <li>You should copy this project to you local machine by command git clone</li>
-    <li></li>
+    <li>You should define parameters of connection to your database in the file application.properties. If you use another database differ from PostgreSQL, you should add dependency for your driver to pom.xml</li>
   </ol>
 I had not finished description else for this project. I will do it in the nearest time.
