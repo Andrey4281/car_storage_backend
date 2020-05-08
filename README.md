@@ -10,5 +10,6 @@ The app has the 6 screens:<br>
 <li>Dialog window with info about each car and contacts of owner. Customer can see this information and call owner car to buy it<br><img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/info_about_car.png"></li>
 <li>Each owner after signing up has personal cabinet. He can edit his adverts and create some new there<br>
   <img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/personal_page.png"></li>
+<li>All adverts are editing or creating in separed dialog window<br><img src="https://github.com/Andrey4281/car_storage_backend/blob/master/images/edit_create_dialog.png"></li>
 </ul>
 I had not finished description else for this project. I will do it in the nearest time.
