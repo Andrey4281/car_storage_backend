@@ -30,3 +30,6 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
   <li>Deploy application to heroku</li>
   <li>Consider possibility deploying by Docker container</li>
 </ul>
+<hr>
+<h3>Contacts:</h3><br>
+If you have any questions feel free to contact me. Email: Andrey4281@yandex.ru
