@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.cars_storage.domain.Role;
 import ru.job4j.cars_storage.service.model.LoginUser;
 import ru.job4j.cars_storage.domain.User;
@@ -46,6 +47,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    @Transactional
     public NewUserResponse save(LoginUser loginUser) {
         NewUserResponse response = new NewUserResponse();
         if (userRepository.findUserByLoginWithRoles(loginUser.getLogin()) != null) {

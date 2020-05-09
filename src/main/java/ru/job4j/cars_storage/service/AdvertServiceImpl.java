@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.cars_storage.domain.Advert;
 import ru.job4j.cars_storage.domain.AttachedFile;
@@ -44,6 +45,7 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Advert> findOne(Long id) {
         return advertRepository.findById(id);
     }
@@ -53,6 +55,7 @@ public class AdvertServiceImpl implements AdvertService {
      * @return
      */
     @Override
+    @Transactional(readOnly = true)
     public Page<Advert> findAll(Map<String, String> reqParam) {
         PageRequest pageRequest = PageRequest.of(Integer.parseInt(reqParam.get("page")),
                     Integer.parseInt(reqParam.get("size")), Sort.by("id").ascending());
