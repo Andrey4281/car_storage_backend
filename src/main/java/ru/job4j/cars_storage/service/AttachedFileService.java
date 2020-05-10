@@ -6,6 +6,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.cars_storage.domain.Advert;
 import ru.job4j.cars_storage.domain.AttachedFile;
@@ -29,6 +30,7 @@ import static java.nio.file.Paths.get;
 import static java.util.Objects.requireNonNull;
 
 @Service
+@Transactional
 public class AttachedFileService {
     private final Logger log = LoggerFactory.getLogger(AttachedFileService.class);
 
@@ -114,6 +116,7 @@ public class AttachedFileService {
     }
 
 
+    @Transactional(readOnly = true)
     public Resource loadFile(Long id) {
         AttachedFile attachedFile = this.attachedFileRepository.findById(id).orElse(new AttachedFile());
         if (attachedFile.getId()!= null) {

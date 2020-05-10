@@ -21,6 +21,7 @@ import java.sql.Timestamp;
 import java.util.*;
 
 @Service
+@Transactional
 public class AdvertServiceImpl implements AdvertService {
     private final Logger log = LoggerFactory.getLogger(AdvertServiceImpl.class);
     private final AdvertRepository advertRepository;

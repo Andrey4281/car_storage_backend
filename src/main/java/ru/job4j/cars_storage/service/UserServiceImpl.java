@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserDetailsService, UserService {
     private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepository.findUserByLoginWithRoles(s);
 
@@ -47,7 +49,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    @Transactional
     public NewUserResponse save(LoginUser loginUser) {
         NewUserResponse response = new NewUserResponse();
         if (userRepository.findUserByLoginWithRoles(loginUser.getLogin()) != null) {
