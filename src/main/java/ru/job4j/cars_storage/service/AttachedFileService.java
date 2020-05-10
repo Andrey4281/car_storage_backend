@@ -30,7 +30,6 @@ import static java.nio.file.Paths.get;
 import static java.util.Objects.requireNonNull;
 
 @Service
-@Transactional
 public class AttachedFileService {
     private final Logger log = LoggerFactory.getLogger(AttachedFileService.class);
 
@@ -116,7 +115,6 @@ public class AttachedFileService {
     }
 
 
-    @Transactional(readOnly = true)
     public Resource loadFile(Long id) {
         AttachedFile attachedFile = this.attachedFileRepository.findById(id).orElse(new AttachedFile());
         if (attachedFile.getId()!= null) {

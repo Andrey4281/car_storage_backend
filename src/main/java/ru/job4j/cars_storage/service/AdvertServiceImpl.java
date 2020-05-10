@@ -8,6 +8,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.cars_storage.domain.Advert;
@@ -21,7 +23,6 @@ import java.sql.Timestamp;
 import java.util.*;
 
 @Service
-@Transactional
 public class AdvertServiceImpl implements AdvertService {
     private final Logger log = LoggerFactory.getLogger(AdvertServiceImpl.class);
     private final AdvertRepository advertRepository;
@@ -39,6 +40,7 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
     public void delete(Long id) {
         advertRepository.deleteById(id);
         List<AttachedFile> attachedFiles = attachedFileRepository.findAllByAdvert_Id(id);
@@ -46,7 +48,7 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED, propagation = Propagation.SUPPORTS)
     public Optional<Advert> findOne(Long id) {
         return advertRepository.findById(id);
     }
@@ -56,7 +58,7 @@ public class AdvertServiceImpl implements AdvertService {
      * @return
      */
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED,propagation = Propagation.SUPPORTS)
     public Page<Advert> findAll(Map<String, String> reqParam) {
         PageRequest pageRequest = PageRequest.of(Integer.parseInt(reqParam.get("page")),
                     Integer.parseInt(reqParam.get("size")), Sort.by("id").ascending());
@@ -64,6 +66,7 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
     public Advert save(Advert advert, List<MultipartFile> files, List<Long> deleteFiles) {
         log.debug("current advert: {}", advert.toString());
         if (advert.getId() == null) {

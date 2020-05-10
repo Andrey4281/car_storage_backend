@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.cars_storage.domain.Role;
 import ru.job4j.cars_storage.service.model.LoginUser;
@@ -20,7 +22,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserDetailsService, UserService {
     private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED,propagation = Propagation.SUPPORTS)
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepository.findUserByLoginWithRoles(s);
 
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
     public NewUserResponse save(LoginUser loginUser) {
         NewUserResponse response = new NewUserResponse();
         if (userRepository.findUserByLoginWithRoles(loginUser.getLogin()) != null) {
