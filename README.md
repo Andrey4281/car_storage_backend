@@ -29,6 +29,7 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
   <li>Add the exhaustive JavaDoc</li>
   <li>Deploy application to heroku</li>
   <li>Consider deploying possibility by Docker container</li>
+  <li>Add a mechanism for update jwt token (refresh token)</li>
 </ul>
 <hr>
 <h3>Contacts:</h3><br>
