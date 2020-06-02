@@ -30,6 +30,10 @@ public class Car {
 
     }
 
+    public Car(Long id) {
+
+    }
+
     public Long getId() {
         return id;
     }

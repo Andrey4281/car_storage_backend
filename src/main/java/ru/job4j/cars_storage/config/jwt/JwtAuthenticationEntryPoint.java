@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 
-@Component
+@Component("unauthorizedHandler")
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 
     @Override

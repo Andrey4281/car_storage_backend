@@ -3,6 +3,7 @@ package ru.job4j.cars_storage.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -55,11 +56,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                    .antMatchers("/car_storage/**").permitAll()
-                    .antMatchers("/api/adverts/{id}").permitAll()
-                    .antMatchers("/api/adverts").permitAll()
+                    .antMatchers(HttpMethod.GET,"/car_storage/**").permitAll()
+                    .antMatchers(HttpMethod.GET,"/api/adverts/{id}").permitAll()
+                    .antMatchers(HttpMethod.GET,"/api/adverts").permitAll()
                     .antMatchers("/user/signin", "/user/signup").permitAll()
-                    .antMatchers("/api/attached-files/download/{id}").permitAll()
+                    .antMatchers(HttpMethod.GET,"/api/attached-files/download/{id}").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
