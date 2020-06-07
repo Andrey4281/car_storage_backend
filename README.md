@@ -20,7 +20,7 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
     <li>You should define parameters of connection to your database in the file application.properties. If you use another database differs from PostgreSQL, you should add a dependency for your driver to pom.xml. Also you should define parameter file-path. This parameter defines folder in your disk where images of cars were saved. All images of cars are saved on the disk, not database</li>
     <li>You should move to the directory of the project and perform command mvn clean, and then perform command mvn package. The fronted part are already compiled to JavaScript code and placed in the dist folder. Packing maven-resources-plugin are used.</li>
   <li>Execute received jar by command: java -jar namejarfile.</li>
-  <li>The last stage: open your favorite browser and enter url: http://localhost:8080/car_storage/index.html</li>
+  <li>The last stage: open your favorite browser and enter url: http://localhost:8080</li>
   </ol>
 <hr>
 <h3>TODO list:</h3><br>
