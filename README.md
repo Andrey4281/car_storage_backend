@@ -25,7 +25,6 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
 <hr>
 <h3>TODO list:</h3><br>
 <ul>
-  <li>Cover the code to unit tests</li>
   <li>Add the exhaustive JavaDoc</li>
   <li>Deploy application to heroku</li>
   <li>Consider deploying possibility by Docker container</li>
