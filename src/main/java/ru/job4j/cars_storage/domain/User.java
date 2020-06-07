@@ -40,6 +40,17 @@ public class User implements UserDetails {
 
     }
 
+    public User(Long id) {
+        this.id = id;
+    }
+
+    public User(Long id, String login, String phone, String password) {
+        this.id = id;
+        this.login = login;
+        this.phone = phone;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }

@@ -34,6 +34,14 @@ public class Car {
 
     }
 
+    public Car(String category, String brand, String engine, String transmission, String carcass) {
+        this.category = category;
+        this.brand = brand;
+        this.engine = engine;
+        this.transmission = transmission;
+        this.carcass = carcass;
+    }
+
     public Long getId() {
         return id;
     }

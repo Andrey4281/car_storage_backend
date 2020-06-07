@@ -54,7 +54,6 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
     /**
-     * Метод пока в разработке, сделать пагинацию и критерию
      * @return
      */
     @Override

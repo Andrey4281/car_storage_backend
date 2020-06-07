@@ -1,5 +1,6 @@
 package ru.job4j.cars_storage.web;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -15,9 +16,11 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+@DisplayName("Unit AdvertController Test")
 class AdvertControllerTest {
 
     @Test
+    @DisplayName("Should return some advert")
     void whenGetSomeAdvertShouldGetIt() {
         AdvertService advertService = mock(AdvertService.class);
         when(advertService.findOne(1L)).thenReturn(Optional.of(new
@@ -28,6 +31,7 @@ class AdvertControllerTest {
     }
 
     @Test
+    @DisplayName("Should create new advert")
     void whenCreateNewAdvertThenShouldGetIt() {
         Advert advert = new Advert();
         advert.setId(1L);
@@ -51,6 +55,7 @@ class AdvertControllerTest {
     }
 
     @Test
+    @DisplayName("Should delete advert")
     void whenDeleteAdvertThenShouldNotGetIt() {
         Advert advert = new Advert();
         advert.setId(1L);
@@ -75,6 +80,7 @@ class AdvertControllerTest {
     }
 
     @Test
+    @DisplayName("Should update advert")
     void whenUpdateAdvertThenShouldReturnUpdatedAdvert() throws BadRequestException {
         Advert oldAdvert = new Advert();
         oldAdvert.setId(1L);
