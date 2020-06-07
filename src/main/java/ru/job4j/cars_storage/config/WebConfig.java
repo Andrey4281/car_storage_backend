@@ -32,5 +32,11 @@ public class WebConfig implements WebMvcConfigurer {
                     }
                 });
     }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/", "/car_storage/index.html");
+    }
+
 }
 
