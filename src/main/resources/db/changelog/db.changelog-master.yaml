@@ -6,7 +6,7 @@ databaseChangeLog:
       file: "changes/load_data_to_role.xml"
       relativeToChangelogFile: true
   - include:
-      file: "change_data_to_role.xml"
+      file: "changes/change_data_to_role.xml"
       relativeToChangelogFile: true
   - include:
       file: "changes/user_entity.xml"
