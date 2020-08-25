@@ -1,25 +1,25 @@
 databaseChangeLog:
   - include:
-     file: "/db/changelog/changes/role_entity.xml"
+     file: "changes/role_entity.xml"
      relativeToChangelogFile: true
   - include:
-      file: "/db/changelog/changes/load_data_to_role.xml"
+      file: "changes/load_data_to_role.xml"
       relativeToChangelogFile: true
   - include:
-      file: "/db/changelog/changes/change_data_to_role.xml"
+      file: "change_data_to_role.xml"
       relativeToChangelogFile: true
   - include:
-      file: "/db/changelog/changes/user_entity.xml"
+      file: "changes/user_entity.xml"
       relativeToChangelogFile: true
   - include:
-      file: "/db/changelog/changes/car_entity.xml"
+      file: "changes/car_entity.xml"
       relativeToChangelogFile: true
   - include:
-      file: "/db/changelog/changes/users_roles_entity.xml"
+      file: "changes/users_roles_entity.xml"
       relativeToChangelogFile: true
   - include:
-      file: "/db/changelog/changes/advert_entity.xml"
+      file: "changes/advert_entity.xml"
       relativeToChangelogFile: true
   - include:
-      file: "/db/changelog/changes/attached_file_entity.xml"
+      file: "changes/attached_file_entity.xml"
       relativeToChangelogFile: true
