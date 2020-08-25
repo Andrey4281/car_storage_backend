@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class AttachedFileController {
     private final AttachedFileService attachedFileService;
 

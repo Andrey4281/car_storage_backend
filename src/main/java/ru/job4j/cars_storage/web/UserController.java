@@ -21,7 +21,7 @@ import ru.job4j.cars_storage.service.model.NewUserResponse;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class UserController {
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
