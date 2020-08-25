@@ -31,5 +31,5 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
 </ul>
 <hr>
 <h3>Contacts:</h3><br>
-If you have any questions feel free to contact me. Email: Andrey4281@yandex.ru
-Heroku: https://infinite-mountain-37242.herokuapp.com/
+<div>If you have any questions feel free to contact me. Email: Andrey4281@yandex.ru</div>
+<div>Application on Heroku: https://infinite-mountain-37242.herokuapp.com/</div>
