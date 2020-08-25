@@ -19,7 +19,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @MultipartConfig
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 public class AdvertController {
     private final Logger log = LoggerFactory.getLogger(AdvertController.class);
 
