@@ -26,10 +26,10 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
 <h3>TODO list:</h3><br>
 <ul>
   <li>Add the exhaustive JavaDoc</li>
-  <li>Deploy application to heroku</li>
   <li>Consider deploying possibility by Docker container</li>
   <li>Add a mechanism for update jwt token (refresh token)</li>
 </ul>
 <hr>
 <h3>Contacts:</h3><br>
 If you have any questions feel free to contact me. Email: Andrey4281@yandex.ru
+Heroku: https://infinite-mountain-37242.herokuapp.com/
