@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+  car-storage-backend:
+    image: andrey4281/cars_storage:0.1
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      RDS_HOSTNAME: postgres
+      RDS_PORT: 5432
+      RDS_DB_NAME: car_storage
+      RDS_USERNAME: postgres
+      RDS_PASSWORD: 12345
+    networks:
+      - car-storage-network
+
+  car-storage-frontend:
+    image: andrey4281/car-storage-frontend:0.0.1
+    ports:
+      - "4200:80"
+    restart: always
+    depends_on:
+      - postgres
+    networks:
+      - car-storage-network
+
+  postgres:
+    image: postgres:10.10
+    ports:
+      - "5433:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: car_storage
+      POSTGRES_PASSWORD: 12345
+    networks:
+      -  car-storage-network
+
+
+networks:
+  car-storage-network:

@@ -101,20 +101,22 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <from>
+                        <image>openjdk:8-jdk-alpine</image>
+                    </from>
+                    <to>
+                        <image>andrey4281/${project.artifactId}:${project.version}</image>
+                    </to>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>copy-resources</id>
-                        <phase>validate</phase>
-                        <goals><goal>copy-resources</goal></goals>
-                        <configuration>
-                            <outputDirectory>${build.directory}/classes/static/</outputDirectory >
-                            <resources>
-                                <resource>
-                                    <directory>dist/cars-storage-front</directory>
-                                </resource>
-                            </resources>
-                        </configuration>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dockerBuild</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
