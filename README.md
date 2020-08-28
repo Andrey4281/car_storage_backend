@@ -25,12 +25,22 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
   <li>The last stage: open your favorite browser and enter url: http://localhost:8080</li>
   </ol>
   </li>
+  <li> By Docker
+    <ol>
+      <li>You should install "Docker" and "Docker Compose" on your local machine</li>
+      <li>You should copy this project to you local machine by command git clone and fecth branch "docker"</li>
+      <li>You should pull needed docker images by commands:
+        <ol>
+          <li>docker pull andrey4281/car-storage-frontend:0.0.1 (reference on DockerHub: https://hub.docker.com/repository/docker/andrey4281/car-storage-frontend)</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
 </ul>
 <hr>
 <h3>TODO list:</h3><br>
 <ul>
   <li>Add the exhaustive JavaDoc</li>
-  <li>Consider deploying possibility by Docker container</li>
   <li>Add a mechanism for update jwt token (refresh token)</li>
 </ul>
 <hr>
