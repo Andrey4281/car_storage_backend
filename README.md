@@ -18,7 +18,7 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
 <ul>
   <li> By maven
   <ol>
-    <li>You should copy this project to you local machine by command git clone</li>
+    <li>You should copy this project to you local machine by command git clone and fecth branch "master"</li>
     <li>You should define parameters of connection to your database in the file application.properties. If you use another database differs from PostgreSQL, you should add a dependency for your driver to pom.xml. Also you should define parameter file-path. This parameter defines folder in your disk where images of cars were saved. All images of cars are saved on the disk, not database</li>
     <li>You should move to the directory of the project and perform command mvn clean, and then perform command mvn package. The fronted part are already compiled to JavaScript code and placed in the dist folder. Packing maven-resources-plugin are used.</li>
   <li>Execute received jar by command: java -jar namejarfile.</li>
@@ -32,8 +32,13 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
       <li>You should pull needed docker images by commands:
         <ol>
           <li>docker pull andrey4281/car-storage-frontend:0.0.1 (reference on DockerHub: https://hub.docker.com/repository/docker/andrey4281/car-storage-frontend)</li>
+          <li>docker pull andrey4281/cars_storage (reference on DockerHub:https://hub.docker.com/repository/docker/andrey4281/cars_storage)</li>
+          <li>docker pull postgres:10.10</li>
         </ol>
       </li>
+      <li>You should move to the directory of the project and perform command: docker-compose up -d</li>
+      <li>Wait a bit time and then open your favorite browser and enter url: http://localhost:4200</li>
+      <li>To stop and remove all containers perform command: docker-compose down. <strong>Pay attention after that all your date will be removed (database data and images). To avoid it you can configure volumes in docker-compose.yml file.</strong></li>
     </ol>
   </li>
 </ul>
