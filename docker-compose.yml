@@ -23,6 +23,7 @@ services:
     restart: always
     depends_on:
       - postgres
+      - car-storage-backend
     networks:
       - car-storage-network
 
