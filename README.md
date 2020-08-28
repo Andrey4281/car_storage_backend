@@ -15,6 +15,8 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
 </ul>
 <hr>
 <h3>Assembly:</h3><br>
+<ul>
+  <li> By maven
   <ol>
     <li>You should copy this project to you local machine by command git clone</li>
     <li>You should define parameters of connection to your database in the file application.properties. If you use another database differs from PostgreSQL, you should add a dependency for your driver to pom.xml. Also you should define parameter file-path. This parameter defines folder in your disk where images of cars were saved. All images of cars are saved on the disk, not database</li>
@@ -22,6 +24,8 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
   <li>Execute received jar by command: java -jar namejarfile.</li>
   <li>The last stage: open your favorite browser and enter url: http://localhost:8080</li>
   </ol>
+  </li>
+</ul>
 <hr>
 <h3>TODO list:</h3><br>
 <ul>
