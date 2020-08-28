@@ -16,7 +16,7 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
 <hr>
 <h3>Assembly:</h3><br>
 <ul>
-  <li> By maven
+  <li> <strong>By maven</strong>
   <ol>
     <li>You should copy this project to you local machine by command git clone and fecth branch "master"</li>
     <li>You should define parameters of connection to your database in the file application.properties. If you use another database differs from PostgreSQL, you should add a dependency for your driver to pom.xml. Also you should define parameter file-path. This parameter defines folder in your disk where images of cars were saved. All images of cars are saved on the disk, not database</li>
@@ -25,7 +25,7 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
   <li>The last stage: open your favorite browser and enter url: http://localhost:8080</li>
   </ol>
   </li>
-  <li> By Docker
+  <li> <strong>By Docker</strong>
     <ol>
       <li>You should install "Docker" and "Docker Compose" on your local machine</li>
       <li>You should copy this project to you local machine by command git clone and fecth branch "docker"</li>
