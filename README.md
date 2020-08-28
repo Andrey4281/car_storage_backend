@@ -38,7 +38,7 @@ In this project the following technologies were used: Spring Boot 2.0, Angular 8
       </li>
       <li>You should move to the directory of the project and perform command: docker-compose up -d</li>
       <li>Wait a bit time and then open your favorite browser and enter url: http://localhost:4200</li>
-      <li>To stop and remove all containers perform command: docker-compose down. <strong>Pay attention after that all your date will be removed (database data and images). To avoid it you can configure volumes in docker-compose.yml file.</strong></li>
+      <li>To stop and remove all containers perform command: docker-compose down. <strong>Pay attention after that all your data will be removed (database data and images). To avoid it you can configure volumes in docker-compose.yml file.</strong></li>
     </ol>
   </li>
 </ul>
