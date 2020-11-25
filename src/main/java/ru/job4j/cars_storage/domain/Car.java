@@ -34,6 +34,7 @@ public class Car {
 
     }
 
+    //TODO следует заменить на Pattern Builder
     public Car(String category, String brand, String engine, String transmission, String carcass) {
         this.category = category;
         this.brand = brand;
