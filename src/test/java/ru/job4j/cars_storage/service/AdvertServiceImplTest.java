@@ -94,7 +94,15 @@ class AdvertServiceImplTest {
         when(SecurityContextHolder.getContext().getAuthentication().getPrincipal()).thenReturn(mockSimpleUserObject);
         Advert advertExpected = new Advert();
         advertExpected.setDescription("saveTest");
-        Car car = new Car("saveTest", "saveTest", "saveTest", "saveTest", "saveTest");
+
+        Car car = Car.builder().
+                category("saveTest").
+                engine("saveTest").
+                transmission("saveTest").
+                carcass("saveTest").
+                brand("saveTest").
+                build();
+
         advertExpected.setCar(car);
 
         Advert advertActual = advertService.save(advertExpected, null, null);

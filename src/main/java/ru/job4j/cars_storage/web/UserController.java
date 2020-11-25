@@ -1,6 +1,7 @@
 package ru.job4j.cars_storage.web;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,8 @@ import ru.job4j.cars_storage.service.model.NewUserResponse;
 @RestController
 @RequestMapping("/user")
 @CrossOrigin("http://localhost:4200")
+@Slf4j
 public class UserController {
-    private final Logger log = LoggerFactory.getLogger(UserController.class);
 
     private final AuthenticationManager authenticationManager;
 
