@@ -1,9 +1,16 @@
 package ru.job4j.cars_storage.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name="cars")
 public class Car {
     @Id
@@ -25,70 +32,6 @@ public class Car {
 
     @Column(name = "carcass", nullable = false)
     private String carcass;
-
-    public Car() {
-
-    }
-
-    public Car(Long id) {
-
-    }
-
-    public Car(String category, String brand, String engine, String transmission, String carcass) {
-        this.category = category;
-        this.brand = brand;
-        this.engine = engine;
-        this.transmission = transmission;
-        this.carcass = carcass;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getEngine() {
-        return engine;
-    }
-
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
-    public String getTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(String transmission) {
-        this.transmission = transmission;
-    }
-
-    public String getCarcass() {
-        return carcass;
-    }
-
-    public void setCarcass(String carcass) {
-        this.carcass = carcass;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,6 +1,10 @@
 package ru.job4j.cars_storage.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -9,6 +13,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "attached_file")
 public class AttachedFile {
     @Id
@@ -36,50 +44,6 @@ public class AttachedFile {
     @Fetch(FetchMode.JOIN)
     private Advert advert;
 
-    public AttachedFile() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(String fileSize) {
-        this.fileSize = fileSize;
-    }
-
-    public String getFileExtension() {
-        return fileExtension;
-    }
-
-    public void setFileExtension(String fileExtension) {
-        this.fileExtension = fileExtension;
-    }
-
-    public String getPathToFile() {
-        return pathToFile;
-    }
-
-    public void setPathToFile(String pathToFile) {
-        this.pathToFile = pathToFile;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,13 +59,5 @@ public class AttachedFile {
     @Override
     public int hashCode() {
         return Objects.hash(id, realName, fileSize, fileExtension, pathToFile);
-    }
-
-    public Advert getAdvert() {
-        return advert;
-    }
-
-    public void setAdvert(Advert advert) {
-        this.advert = advert;
     }
 }

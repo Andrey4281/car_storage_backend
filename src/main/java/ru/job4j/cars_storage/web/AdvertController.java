@@ -1,13 +1,13 @@
 package ru.job4j.cars_storage.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.job4j.cars_storage.aspect.LoggerAnnotationMethod;
 import ru.job4j.cars_storage.domain.Advert;
 import ru.job4j.cars_storage.service.AdvertService;
 
@@ -20,8 +20,8 @@ import java.util.Optional;
 @RequestMapping("/api")
 @MultipartConfig
 @CrossOrigin("http://localhost:4200")
+@Slf4j
 public class AdvertController {
-    private final Logger log = LoggerFactory.getLogger(AdvertController.class);
 
     private final AdvertService advertService;
 
@@ -35,11 +35,10 @@ public class AdvertController {
      * @param files
      * @return
      */
+    @LoggerAnnotationMethod
     @PostMapping(value = "/adverts/new",  consumes = { "multipart/form-data" })
     public ResponseEntity<Advert> createAdvert(@RequestPart("advert") Advert advert,
                                                @RequestPart(value = "files", required = false) List<MultipartFile> files) {
-
-        log.debug("REST request to save Advert : {}", advert);
         advertService.save(advert, files, null);
 
         return new ResponseEntity<>(advert, HttpStatus.OK);
@@ -53,6 +52,7 @@ public class AdvertController {
      * @return
      * @throws BadRequestException
      */
+    @LoggerAnnotationMethod
     @PutMapping(value = "/adverts/edit",  consumes = { "multipart/form-data" })
     public ResponseEntity<Advert> updateAdvert(@RequestPart("advert") Advert advert,
                                                @RequestPart(value = "files", required = false) List<MultipartFile> files,
@@ -67,6 +67,7 @@ public class AdvertController {
         return new ResponseEntity<>(advert, HttpStatus.OK);
     }
 
+    @LoggerAnnotationMethod
     @GetMapping("/adverts")
     public ResponseEntity<List<Advert>> getAllAdverts(@RequestParam Map<String, String> reqParam) {
         log.debug("REST request to get all adverts");
@@ -76,6 +77,7 @@ public class AdvertController {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @LoggerAnnotationMethod
     @GetMapping("/adverts/{id}")
     public ResponseEntity<?> getAdvert(@PathVariable Long id) {
         Optional<Advert> advert = advertService.findOne(id);
@@ -87,6 +89,7 @@ public class AdvertController {
         }
     }
 
+    @LoggerAnnotationMethod
     @DeleteMapping("/adverts/delete/{id}")
     public ResponseEntity<?> deleteAdvert(@PathVariable Long id) {
         Optional<Advert> advert = advertService.findOne(id);
