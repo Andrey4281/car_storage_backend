@@ -2,6 +2,7 @@ package ru.job4j.cars_storage.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     private final RoleRepository roleRepository;
 
-    public UserServiceImpl(BCryptPasswordEncoder bcryptEncoder, UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(@Lazy BCryptPasswordEncoder bcryptEncoder, UserRepository userRepository, RoleRepository roleRepository) {
         this.bcryptEncoder = bcryptEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;

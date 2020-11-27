@@ -22,6 +22,11 @@ import ru.job4j.cars_storage.service.UserServiceImpl;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    public WebSecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, UserServiceImpl userService) {
+        this.unauthorizedHandler = unauthorizedHandler;
+        this.userService = userService;
+    }
+
     @Bean
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
@@ -43,11 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService).passwordEncoder(encoder());
     }
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
-
-    @Autowired
-    private UserServiceImpl userService;
+    private final JwtAuthenticationEntryPoint unauthorizedHandler;
+    private final UserServiceImpl userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
