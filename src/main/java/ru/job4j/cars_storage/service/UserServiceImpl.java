@@ -2,7 +2,6 @@ package ru.job4j.cars_storage.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ru.job4j.cars_storage.domain.Role;
 import ru.job4j.cars_storage.service.model.LoginUser;
 import ru.job4j.cars_storage.domain.User;
 import ru.job4j.cars_storage.repository.RoleRepository;
@@ -25,14 +23,14 @@ import java.util.HashSet;
 public class UserServiceImpl implements UserDetailsService, UserService {
     private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    @Autowired
-    private BCryptPasswordEncoder bcryptEncoder;
+    private final BCryptPasswordEncoder bcryptEncoder;
 
     private final UserRepository userRepository;
 
     private final RoleRepository roleRepository;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(BCryptPasswordEncoder bcryptEncoder, UserRepository userRepository, RoleRepository roleRepository) {
+        this.bcryptEncoder = bcryptEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
